@@ -2,6 +2,7 @@
 """This module serializes instances to a JSON file
 and deserializes JSON file to instances
 """
+from models.base_model import BaseModel
 import json
 from os import path
 
@@ -12,6 +13,8 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    dic_class = {"BaseModel": BaseModel}
+
     def all(self):
         """Will return the objects dictionary
         """
@@ -20,20 +23,27 @@ class FileStorage:
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id
         """
-        self.__objects[obj.__class__.__name__ + '.' + str(obj.id)] = obj.to_dict()
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """To serializes
         """
-        with open(FileStorage.__file_path, "w", encoding="utf-8") as write_file:
-            json.dump(FileStorage.__objects, write_file)
+        _dict = {}
+        for key, value in FileStorage.__objects.items():
+            _dict[key] = value.to_dict()
+
+        with open(FileStorage.__file_path, "w") as write_file:
+            json.dump(_dict, write_file)
 
     def reload(self):
         """To deserializes
         """
         try:
-            if path.exists(FileStorage.__file_path):
-                with open(FileStorage.__file_path, "r") as write_file:
-                    json.load(write_file)
+            with open(FileStorage.__file_path, "r") as write_file:
+                data = json.load(write_file)
+                FileStorage.__objects = {}
+                for key, value in data.items():
+                    FileStorage.__objects[key] = FileStorage.dic_class[value['__class__']](**value)
         except:
-            pass
+            return
