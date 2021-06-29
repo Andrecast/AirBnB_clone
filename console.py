@@ -12,6 +12,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -118,23 +119,23 @@ class HBNBCommand(cmd.Cmd):
 
         """
         if args:
-            my_list = args.split()
+            my_list = shlex.split(args)
             if my_list[0] in HBNBCommand.list_of_class:
                 if len(my_list) > 1:
-                    if len(my_list) > 2:
-                        if len(my_list) > 3:
-                            all_objs = storage.all()
-                            _id = "{}.{}".format(
-                                my_list[0], my_list[1])
-                            if _id in all_objs:
+                    all_objs = storage.all()
+                    _id = "{}.{}".format(
+                    my_list[0], my_list[1])
+                    if _id in all_objs:
+                        if len(my_list) > 2:
+                            if len(my_list) > 3:
                                 setattr(all_objs[_id], my_list[2], my_list[3])
                                 storage.save()
                             else:
-                                print("** no instance found **")
+                                print("** value missing **")
                         else:
-                            print("** value missing **")
+                            print("** attribute name missing **")
                     else:
-                        print("** attribute name missing **")
+                        print("** no instance found **")
                 else:
                     print("** instance id missing **")
             else:
