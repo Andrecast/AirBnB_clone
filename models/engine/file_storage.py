@@ -4,7 +4,6 @@ and deserializes JSON file to instances
 """
 from models.base_model import BaseModel
 import json
-from os import path
 
 
 class FileStorage:
@@ -12,8 +11,6 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
-
-    dic_class = {"BaseModel": BaseModel}
 
     def all(self):
         """Will return the objects dictionary
@@ -42,8 +39,7 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "r") as write_file:
                 data = json.load(write_file)
-                FileStorage.__objects = {}
                 for key, value in data.items():
-                    FileStorage.__objects[key] = FileStorage.dic_class[value['__class__']](**value)
+                    FileStorage.__objects[key] = BaseModel(**value)
         except:
-            return
+            pass
