@@ -3,6 +3,7 @@
 and deserializes JSON file to instances
 """
 from models.base_model import BaseModel
+from models.user import User
 import json
 
 
@@ -40,6 +41,10 @@ class FileStorage:
             with open(FileStorage.__file_path, "r") as write_file:
                 data = json.load(write_file)
                 for key, value in data.items():
-                    FileStorage.__objects[key] = BaseModel(**value)
+                    class_id = key.split('.')
+                    if class_id[0] == 'BaseModel':
+                        FileStorage.__objects[key] = BaseModel(**value)
+                    elif class_id[0] == 'User':
+                        FileStorage.__objects[key] = User(**value)
         except:
             pass
