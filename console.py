@@ -5,6 +5,7 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -13,6 +14,7 @@ class HBNBCommand(cmd.Cmd):
 
     """
     prompt = "(hbnb) "
+    list_of_class = ['BaseModel', 'User']
 
     def do_quit(self, args):
         """Quit command to exit the program
@@ -36,12 +38,12 @@ class HBNBCommand(cmd.Cmd):
         """Create Creates a new instance of BaseModel
 
         """
-        if args == 'BaseModel':
-            _instances = BaseModel()
-            print(_instances.id)
+        if args in HBNBCommand.list_of_class:
+            _instance = eval(args)() #my_model = BaseModel() #print(my_model.id)
+            print(_instance.id)
         elif args == '':
             print("** class name missing **")
-        elif args != 'BaseModel':
+        elif args not in HBNBCommand.list_of_class:
             print("** class doesn't exist **")
 
     def do_show(self, args):
@@ -49,11 +51,11 @@ class HBNBCommand(cmd.Cmd):
 
         """
         if args:
-            list_class_id = args.split()
-            if list_class_id[0] == 'BaseModel':
+            list_class_id = args.split('.') #Lis = ['Basemodel', '1212121']
+            if list_class_id[0] in HBNBCommand.list_of_class:
                 if len(list_class_id) == 2:
-                    all_objs = storage.all()
-                    _id = "{}.{}".format(list_class_id[0], list_class_id[1])
+                    all_objs = storage.all() #BaseModel.121212 {}
+                    _id = "{}.{}".format(list_class_id[0], list_class_id[1]) #BaseModel.121212
                     if any(_id == keys for keys in all_objs.keys()):
                         print(all_objs[_id])
                     else:
@@ -71,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if args:
             list_class_id = args.split()
-            if list_class_id[0] == 'BaseModel':
+            if list_class_id[0] in HBNBCommand.list_of_class:
                 if len(list_class_id) == 2:
                     all_objs = storage.all()
                     _id = "{}.{}".format(list_class_id[0], list_class_id[1])
@@ -91,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances
 
         """
-        if args or args == '':
+        if args or args == '' or args in HBNBCommand.list_of_class:
             all_objs = storage.all()
             my_list = []
             for value in all_objs.values():
@@ -106,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if args:
             my_list = args.split()
-            if my_list[0] == 'BaseModel':
+            if my_list[0] in HBNBCommand.list_of_class:
                 if len(my_list) > 1:
                     if len(my_list) > 2:
                         all_objs = storage.all()
