@@ -98,15 +98,18 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances
 
         """
-        if args:
-            if args == '' or args in HBNBCommand.list_of_class:
-                all_objs = storage.all()
-                my_list = []
-                for value in all_objs.values():
-                    my_list.append(str(value))
-                print(my_list)
-            else:
-                print("** class doesn't exist **")
+        if args == '':
+            all_objs = storage.all()
+            my_list = []
+            for value in all_objs.values():
+                my_list.append(str(value))
+            print(my_list)
+        elif args in HBNBCommand.list_of_class:
+            all_objs = storage.all()
+            my_list = []
+            for value in all_objs.values():
+                my_list.append(str(value))
+            print(my_list)
         else:
             print("** class doesn't exist **")
 
@@ -119,16 +122,19 @@ class HBNBCommand(cmd.Cmd):
             if my_list[0] in HBNBCommand.list_of_class:
                 if len(my_list) > 1:
                     if len(my_list) > 2:
-                        all_objs = storage.all()
-                        _id = "{}.{}".format(
-                            my_list[0], my_list[1])
-                        if _id in all_objs:
-                            setattr(all_objs[_id], my_list[2], my_list[3])
-                            storage.save()
+                        if len(my_list) > 3:
+                            all_objs = storage.all()
+                            _id = "{}.{}".format(
+                                my_list[0], my_list[1])
+                            if _id in all_objs:
+                                setattr(all_objs[_id], my_list[2], my_list[3])
+                                storage.save()
+                            else:
+                                print("** no instance found **")
                         else:
-                            print("** no instance found **")
+                            print("** value missing **")
                     else:
-                        print("** value missing **")
+                        print("** attribute name missing **")
                 else:
                     print("** instance id missing **")
             else:
