@@ -7,6 +7,11 @@ import cmd
 from models.base_model import BaseModel
 from models.user import User
 from models import storage
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -51,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
 
         """
         if args:
-            list_class_id = args.split('.')
+            list_class_id = args.split()
             if list_class_id[0] in HBNBCommand.list_of_class:
                 if len(list_class_id) == 2:
                     all_objs = storage.all()
