@@ -10,11 +10,11 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    """The class entry point of the command interpreter.
-
+    """The class entry point of the command interpreter
     """
     prompt = "(hbnb) "
-    list_of_class = ['BaseModel', 'User']
+    list_of_class = [
+        'BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
 
     def do_quit(self, args):
         """Quit command to exit the program
@@ -36,10 +36,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Create Creates a new instance of BaseModel
-
         """
+
         if args in HBNBCommand.list_of_class:
-            _instance = eval(args)() #my_model = BaseModel() #print(my_model.id)
+            _instance = eval(args)()
             print(_instance.id)
         elif args == '':
             print("** class name missing **")
@@ -51,11 +51,11 @@ class HBNBCommand(cmd.Cmd):
 
         """
         if args:
-            list_class_id = args.split('.') #Lis = ['Basemodel', '1212121']
+            list_class_id = args.split('.')
             if list_class_id[0] in HBNBCommand.list_of_class:
                 if len(list_class_id) == 2:
-                    all_objs = storage.all() #BaseModel.121212 {}
-                    _id = "{}.{}".format(list_class_id[0], list_class_id[1]) #BaseModel.121212
+                    all_objs = storage.all()
+                    _id = "{}.{}".format(list_class_id[0], list_class_id[1])
                     if any(_id == keys for keys in all_objs.keys()):
                         print(all_objs[_id])
                     else:

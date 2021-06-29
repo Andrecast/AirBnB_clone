@@ -5,6 +5,11 @@ and deserializes JSON file to instances
 from models.base_model import BaseModel
 from models.user import User
 import json
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage:
@@ -46,5 +51,15 @@ class FileStorage:
                         FileStorage.__objects[key] = BaseModel(**value)
                     elif class_id[0] == 'User':
                         FileStorage.__objects[key] = User(**value)
+                    elif class_id[0] == 'Place':
+                        FileStorage.__objects[key] = Place(**value)
+                    elif class_id[0] == 'State':
+                        FileStorage.__objects[key] = State(**value)
+                    elif class_id[0] == 'City':
+                        FileStorage.__objects[key] = City(**value)
+                    elif class_id[0] == 'Amenity':
+                        FileStorage.__objects[key] = Amenity(**value)
+                    elif class_id[0] == 'Review':
+                        FileStorage.__objects[key] = Review(**value)
         except:
             pass
