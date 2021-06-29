@@ -51,6 +51,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif args not in HBNBCommand.list_of_class:
             print("** class doesn't exist **")
+        storage.save()
 
     def do_show(self, args):
         """Prints the string representation of an instance
@@ -99,20 +100,23 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances
 
         """
+        my_list = shlex.split(args)
         if args == '':
             all_objs = storage.all()
             my_list = []
             for value in all_objs.values():
-                my_list.append(str(value))
-            print(my_list)
-        elif args in HBNBCommand.list_of_class:
-            all_objs = storage.all()
-            my_list = []
-            for value in all_objs.values():
-                my_list.append(str(value))
+                my_list.append("{}".format(str(value)))
             print(my_list)
         else:
-            print("** class doesn't exist **")
+            if args in HBNBCommand.list_of_class:
+                all_objs = storage.all()
+                my_list = []
+                for key in all_objs:
+                    if args in key:
+                        my_list.append("{}".format(all_objs[key]))
+                print(my_list)
+            else:
+                print("** class doesn't exist **")
 
     def do_update(self, args):
         """Updates an instance
