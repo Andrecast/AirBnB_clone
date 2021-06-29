@@ -9,7 +9,8 @@ import models
 
 class BaseModel:
     """
-        This class defines all common attributes/methods for other classes
+        This class defines all common
+        attributes/methods for other classes
     """
 
     def __init__(self, *args, **kwargs):
@@ -46,7 +47,8 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values of __dict__ of the instance
+        """returns a dictionary containing all
+        keys/values of __dict__ of the instance
         """
         my_dict = self.__dict__.copy()
         my_dict["__class__"] = self.__class__.__name__
