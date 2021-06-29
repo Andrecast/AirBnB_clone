@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Base class
+"""class BaseModel that defines all common
+attributes/methods for other classes
 """
 import uuid
 from datetime import datetime
@@ -47,7 +48,7 @@ class BaseModel:
         """returns a dictionary containing all keys/values of __dict__ of the instance
         """
         my_dict = self.__dict__.copy()
-        my_dict["__class__"] = __class__.__name__
+        my_dict["__class__"] = self.__class__.__name__
         my_dict["created_at"] = datetime.isoformat(self.created_at)
         my_dict["updated_at"] = datetime.isoformat(self.updated_at)
         return my_dict
