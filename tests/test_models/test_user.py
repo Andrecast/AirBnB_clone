@@ -7,6 +7,7 @@ from models import user
 import os
 User = user.User
 
+
 class test_user(unittest.TestCase):
     """Requirements cases
     """
@@ -30,10 +31,12 @@ class test_user(unittest.TestCase):
         with open('models/user.py', 'r') as text:
             line_1 = text.readline()
             self.assertEqual(line_1.strip(), '#!/usr/bin/python3')
-        
+
     """Class cases
     """
     def test_instances(self):
         MyModel = User()
         MyModel.name = "Laurant"
-        self.assertIsInstance(MyModel.name, User)
+        self.assertIsInstance(MyModel, User)
+        self.assertTrue(MyModel.name, "<class 'User'>")
+        self.assertEqual(type(MyModel.name), str)
