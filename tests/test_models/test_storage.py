@@ -7,6 +7,7 @@ from models.engine import file_storage
 from models import storage
 import os
 from datetime import datetime
+from models.base_model import BaseModel
 
 """ FileStorage = file_storage.FileStorage """
 
@@ -37,10 +38,6 @@ class test_storage(unittest.TestCase):
 
     """Class cases
     """
-    """ def test_attr_file_path(self):
-        my_objs = storage.new()
-        print(my_objs) """
-
     def test_all(self):
         my_objs = storage.all()
         self.assertTrue(type(my_objs), "<class 'dict'>")
@@ -48,3 +45,7 @@ class test_storage(unittest.TestCase):
     def test_save(self):
         my_file = "file.json"
         self.assertFalse(os.path.exists(my_file), False)
+        MyModel = BaseModel()
+        storage.save()
+        self.assertTrue(os.path.exists(my_file), True)
+        os.remove(my_file)
