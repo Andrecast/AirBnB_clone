@@ -51,14 +51,10 @@ class test_storage(unittest.TestCase):
 
     def test_save(self):
         my_file = "file.json"
-        os.remove(my_file)
         MyModel = BaseModel()
         storage.save()
         self.assertTrue(os.path.exists(my_file), True)
         os.remove(my_file)
 
     def test_reload(self):
-        MyModel = BaseModel()
-        storage.save()
-        _dic = storage.reload
-        self.assertTrue(type(_dic), "<class 'dict'>")
+        pass
