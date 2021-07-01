@@ -2,6 +2,7 @@
 """
     Test for base FileStorage
 """
+from models.engine.file_storage import FileStorage
 import unittest
 from models.engine import file_storage
 from models import storage
@@ -19,7 +20,10 @@ class test_storage(unittest.TestCase):
         self.assertTrue(len(file_storage.FileStorage.__doc__) > 1)
 
     def test_to_the_class_docstring(self):
-        self.assertTrue(len(FileStorage.__doc__) > 1)
+        self.assertTrue(len(file_storage.FileStorage.__doc__) > 1)
+
+    def test_to_the_class_docstring(self):
+        self.assertTrue(len(file_storage.FileStorage.__doc__) > 1)
 
     def test_of_PEP8_base_model(self):
         self.assertEqual(os.system("pep8 ./models/engine/file_storage.py"), 0)
@@ -36,25 +40,21 @@ class test_storage(unittest.TestCase):
     """Class cases
     """
     def test_all(self):
-        """ Check that method returns the dictionary __objects """
-        object = storage.all()
-        self.assertIsInstance(object, dict)
+        my_objs = storage.all()
+        self.assertTrue(type(my_objs), "<class 'dict'>")
 
-    def test_new(self):
-        """ Check that method sets in __objects the obj with key
-            <obj class name>.id """
-        pass
-
-    def test_save_exists(self):
-        """ Serialize __objects to the JSON file """
-        file = "obj.json"
+    def test_save(self):
+        file = "file.json"
         self.assertFalse(os.path.exists(file))
-        FileStorage._FileStorage__file_path = "obj.json"
+        FileStorage._FileStorage__file_path = "file.json"
         obj = BaseModel()
         obj.save()
         self.assertTrue(os.path.exists(file))
         os.remove(file)
 
     def test_reload(self):
-        """ Deserialize the JSON file to __objects """
-        pass
+        MyModel = BaseModel()
+        storage.save()
+        _dic = storage.reload
+        self.assertTrue(type(_dic), "<class 'dict'>")
+        os.remove("file.json")
