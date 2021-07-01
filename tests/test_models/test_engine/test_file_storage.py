@@ -37,8 +37,6 @@ class test_storage(unittest.TestCase):
     """
     def test_attr_path(self):
         self.assertTrue(type(FileStorage._FileStorage__file_path), ".json")
-        self.assertTrue(FileStorage._FileStorage__file_path != 0)
-        self.assertTrue(type(FileStorage._FileStorage__file_path) is str)
 
     def test_attr_objects(self):
         self.assertTrue(type(
@@ -49,7 +47,7 @@ class test_storage(unittest.TestCase):
         self.assertTrue(type(my_objs), "<class 'dict'>")
 
     def test_new(self):
-        return
+        pass
 
     def test_save(self):
         my_file = "file.json"
