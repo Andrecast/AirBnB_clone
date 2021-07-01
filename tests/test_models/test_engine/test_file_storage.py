@@ -9,6 +9,8 @@ import os
 from datetime import datetime
 from models.base_model import BaseModel
 
+FileStorage = file_storage.FileStorage
+
 
 class test_storage(unittest.TestCase):
     """Requirements cases
@@ -17,7 +19,7 @@ class test_storage(unittest.TestCase):
         self.assertTrue(len(file_storage.FileStorage.__doc__) > 1)
 
     def test_to_the_class_docstring(self):
-        self.assertTrue(len(file_storage.FileStorage.__doc__) > 1)
+        self.assertTrue(len(FileStorage.__doc__) > 1)
 
     def test_to_the_class_docstring(self):
         self.assertTrue(len(file_storage.FileStorage.__doc__) > 1)
@@ -36,6 +38,12 @@ class test_storage(unittest.TestCase):
 
     """Class cases
     """
+    def test_class_attr_objects(self):
+        """Test to the attribute objects of the FileStorage class
+        """
+        obj = FileStorage._FileStorage__objects
+        self.assertEqual(obj, {})
+
     def test_all(self):
         """Test to the method all of the FileStorage class
         """
@@ -51,7 +59,6 @@ class test_storage(unittest.TestCase):
         """Test to the method save of the FileStorage class
         """
         my_file = "file.json"
-        os.remove(my_file)
         MyModel = BaseModel()
         storage.save()
         self.assertTrue(os.path.exists(my_file), True)
