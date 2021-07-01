@@ -8,7 +8,7 @@ import os
 State = state.State
 
 
-class test_user(unittest.TestCase):
+class test_state(unittest.TestCase):
     """Requirements cases
     """
     def test_to_the_module_docstring(self):
