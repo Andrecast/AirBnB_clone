@@ -8,7 +8,7 @@ import os
 City = city.City
 
 
-class test_user(unittest.TestCase):
+class test_city(unittest.TestCase):
     """Requirements cases
     """
     def test_to_the_module_docstring(self):
