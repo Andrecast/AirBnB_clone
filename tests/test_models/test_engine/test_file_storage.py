@@ -55,6 +55,8 @@ class test_storage(unittest.TestCase):
 
     def test_attr_path(self):
         self.assertTrue(type(FileStorage._FileStorage__file_path), ".json")
+        self.assertTrue(FileStorage._FileStorage__file_path != 0)
+        self.assertTrue(type(FileStorage._FileStorage__file_path) is str)
 
     def test_attr_objects(self):
         self.assertTrue(type(
