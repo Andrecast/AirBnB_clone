@@ -43,8 +43,8 @@ class test_storage(unittest.TestCase):
             FileStorage._FileStorage__objects), dict)
 
     def test_all(self):
-        my_objs = storage.all()
-        self.assertTrue(type(my_objs), "<class 'dict'>")
+        object = storage.all()
+        self.assertIsInstance(object, dict)
 
     def test_new(self):
         pass
