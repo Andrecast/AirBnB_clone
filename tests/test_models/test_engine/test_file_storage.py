@@ -29,7 +29,7 @@ class test_storage(unittest.TestCase):
 
     def test_of_PEP8_test_base_model(self):
         self.assertEqual(os.system(
-            "pep8 tests/test_models/test_storage.py"), 0)
+            "pep8 tests/test_models/test_engine/test_file_storage.py"), 0)
 
     def test_shebang(self):
         with open('models/engine/file_storage.py', 'r') as text:
