@@ -35,9 +35,21 @@ class test_storage(unittest.TestCase):
 
     """Class cases
     """
+    def test_attr_path(self):
+        self.assertTrue(type(FileStorage._FileStorage__file_path), ".json")
+        self.assertTrue(FileStorage._FileStorage__file_path != 0)
+        self.assertTrue(type(FileStorage._FileStorage__file_path) is str)
+
+    def test_attr_objects(self):
+        self.assertTrue(type(
+            FileStorage._FileStorage__objects), dict)
+
     def test_all(self):
         my_objs = storage.all()
         self.assertTrue(type(my_objs), "<class 'dict'>")
+
+    def test_new(self):
+        return
 
     def test_save(self):
         my_file = "file.json"
@@ -52,14 +64,3 @@ class test_storage(unittest.TestCase):
         storage.save()
         _dic = storage.reload
         self.assertTrue(type(_dic), "<class 'dict'>")
-
-    def test_attr_class_file_path(self):
-        self.assertTrue(type(FileStorage._FileStorage__file_path), ".json")
-        self.assertTrue(type(FileStorage._FileStorage__file_path) is str)
-
-    def test_attr_class_objects(self):
-        self.assertTrue(type(
-            FileStorage._FileStorage__objects), dict)
-
-    def test_new(self):
-        return
