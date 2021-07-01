@@ -53,7 +53,6 @@ class test_storage(unittest.TestCase):
         """Test to the method all of the FileStorage class
         """
         my_objs = storage.all()
-        self.assertIsInstance(my_objs, dict)
         self.assertEqual(my_objs, {})
 
     def test_new(self):
