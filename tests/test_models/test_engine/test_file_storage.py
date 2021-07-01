@@ -40,20 +40,25 @@ class test_storage(unittest.TestCase):
     """Class cases
     """
     def test_all(self):
+        """ Check that method returns the dictionary __objects """
         object = storage.all()
         self.assertIsInstance(object, dict)
 
     def test_new(self):
+        """ Check that method sets in __objects the obj with key
+            <obj class name>.id """
         pass
 
-    def test_save(self):
-        file = "file.json"
+    def test_save_exists(self):
+        """ Serialize __objects to the JSON file """
+        file = "obj.json"
         self.assertFalse(os.path.exists(file))
-        FileStorage._FileStorage__file_path = "file.json"
+        FileStorage._FileStorage__file_path = "obj.json"
         obj = BaseModel()
         obj.save()
         self.assertTrue(os.path.exists(file))
         os.remove(file)
 
     def test_reload(self):
+        """ Deserialize the JSON file to __objects """
         pass
