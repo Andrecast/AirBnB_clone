@@ -38,6 +38,11 @@ class test_storage(unittest.TestCase):
 
     """Class cases
     """
+    def test_class_attr_file_path(self):
+        file = FileStorage._FileStorage__file_path
+        self.assertEqual(file, "file.json")
+        self.assertTrue(file, None)
+
     def test_class_attr_objects(self):
         """Test to the attribute objects of the FileStorage class
         """
