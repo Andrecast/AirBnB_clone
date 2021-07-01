@@ -48,7 +48,7 @@ class test_storage(unittest.TestCase):
         """Test to the method all of the FileStorage class
         """
         my_objs = storage.all()
-        self.assertTrue(type(my_objs), "<class 'dict'>")
+        self.assertIsInstance(my_objs, dict)
 
     def test_new(self):
         """Test to the method new of the FileStorage class
