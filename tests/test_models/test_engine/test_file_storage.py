@@ -59,3 +59,6 @@ class test_storage(unittest.TestCase):
     def test_attr_objects(self):
         self.assertTrue(type(
             FileStorage._FileStorage__objects), dict)
+
+    def test_new(self):
+        return
