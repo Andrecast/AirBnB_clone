@@ -8,7 +8,7 @@ import os
 Amenity = amenity.Amenity
 
 
-class test_user(unittest.TestCase):
+class test_amenity(unittest.TestCase):
     """Requirements cases
     """
     def test_to_the_module_docstring(self):
