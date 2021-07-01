@@ -8,7 +8,7 @@ import os
 Review = review.Review
 
 
-class test_user(unittest.TestCase):
+class test_review(unittest.TestCase):
     """Requirements cases
     """
     def test_to_the_module_docstring(self):
