@@ -58,13 +58,13 @@ class test_storage(unittest.TestCase):
     def test_new(self):
         """Test to the method new of the FileStorage class
         """
-        ins = BaseModel()
-        ins.save()
-        all_objs = storage.all()
-
-        obj_key = ins.__class__.__name__ + '.' + ins.id
-        self.assertEqual(all_objs[obj_key], ins)
-        self.assertEqual(obj_key in all_objs, True)
+        my_instance = BaseModel()
+        my_instance.save()
+        all_instances = storage.all()
+        class_id = "{}.{}".format(
+            my_instance.__class__.__name__, my_instance.id)
+        self.assertEqual(all_instances[class_id], my_instance)
+        self.assertTrue(class_id in all_instances, True)
 
     def test_save(self):
         """Test to the method save of the FileStorage class
