@@ -2,15 +2,12 @@
 """
     Test for base FileStorage
 """
-from models.engine.file_storage import FileStorage
 import unittest
 from models.engine import file_storage
 from models import storage
 import os
 from datetime import datetime
 from models.base_model import BaseModel
-
-FileStorage = file_storage.FileStorage
 
 
 class test_storage(unittest.TestCase):
@@ -44,17 +41,15 @@ class test_storage(unittest.TestCase):
         self.assertTrue(type(my_objs), "<class 'dict'>")
 
     def test_save(self):
-        file = "file.json"
-        self.assertFalse(os.path.exists(file))
-        FileStorage._FileStorage__file_path = "file.json"
-        obj = BaseModel()
-        obj.save()
-        self.assertTrue(os.path.exists(file))
-        os.remove(file)
+        my_file = "file.json"
+        os.remove(my_file)
+        MyModel = BaseModel()
+        storage.save()
+        self.assertTrue(os.path.exists(my_file), True)
+        os.remove(my_file)
 
     def test_reload(self):
         MyModel = BaseModel()
         storage.save()
         _dic = storage.reload
         self.assertTrue(type(_dic), "<class 'dict'>")
-        os.remove("file.json")
