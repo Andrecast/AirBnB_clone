@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
                 if len(my_list) > 1:
                     all_objs = storage.all()
                     _id = "{}.{}".format(
-                    my_list[0], my_list[1])
+                        my_list[0], my_list[1])
                     if _id in all_objs:
                         if len(my_list) > 2:
                             if len(my_list) > 3:
