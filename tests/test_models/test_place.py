@@ -8,7 +8,7 @@ import os
 Place = place.Place
 
 
-class test_user(unittest.TestCase):
+class test_place(unittest.TestCase):
     """Requirements cases
     """
     def test_to_the_module_docstring(self):
