@@ -35,14 +35,8 @@ class test_storage(unittest.TestCase):
 
     """Class cases
     """
-    def test_attr_path(self):
-        self.assertTrue(type(FileStorage._FileStorage__file_path), ".json")
-
-    def test_attr_objects(self):
-        self.assertTrue(type(
-            FileStorage._FileStorage__objects), dict)
-
     def test_all(self):
+        """ Check that method returns the dictionary __objects """
         object = storage.all()
         self.assertIsInstance(object, dict)
 
