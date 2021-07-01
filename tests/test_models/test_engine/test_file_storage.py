@@ -40,6 +40,9 @@ class test_storage(unittest.TestCase):
         my_objs = storage.all()
         self.assertTrue(type(my_objs), "<class 'dict'>")
 
+    def test_new(self):
+        pass
+
     def test_save(self):
         my_file = "file.json"
         os.remove(my_file)
