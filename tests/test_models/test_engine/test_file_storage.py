@@ -37,13 +37,19 @@ class test_storage(unittest.TestCase):
     """Class cases
     """
     def test_all(self):
+        """Test to the method all of the FileStorage class
+        """
         my_objs = storage.all()
         self.assertTrue(type(my_objs), "<class 'dict'>")
 
     def test_new(self):
+        """Test to the method new of the FileStorage class
+        """
         pass
 
     def test_save(self):
+        """Test to the method save of the FileStorage class
+        """
         my_file = "file.json"
         os.remove(my_file)
         MyModel = BaseModel()
@@ -52,6 +58,8 @@ class test_storage(unittest.TestCase):
         os.remove(my_file)
 
     def test_reload(self):
+        """Test to the method reload of the FileStorage class
+        """
         MyModel = BaseModel()
         storage.save()
         _dic = storage.reload
