@@ -53,11 +53,11 @@ class test_storage(unittest.TestCase):
         _dic = storage.reload
         self.assertTrue(type(_dic), "<class 'dict'>")
 
-    def test_attr_path(self):
+    def test_attr_class_file_path(self):
         self.assertTrue(type(FileStorage._FileStorage__file_path), ".json")
-        self.assertTrue(FileStorage._FileStorage__file_path != 0)
+        self.assertTrue(type(FileStorage._FileStorage__file_path) is str)
 
-    def test_attr_objects(self):
+    def test_attr_class_objects(self):
         self.assertTrue(type(
             FileStorage._FileStorage__objects), dict)
 
