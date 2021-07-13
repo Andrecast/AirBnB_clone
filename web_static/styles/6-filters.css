@@ -37,6 +37,7 @@
     margin: 8px 0 8px 40px; /*fue necesario añadir margenes al texto*/
 }
 .popover {
+    display: none;
     position: relative;
     z-index: 1;
     background-color: #FAFAFA;
